@@ -10,22 +10,19 @@
 
     <TextView
         android:id="@+id/soccerTeams"
-        android:layout_width="263dp"
-        android:layout_height="167dp"
-        android:layout_marginStart="96dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="94dp"
-        android:layout_marginEnd="53dp"
-        android:layout_marginBottom="55dp"
         android:fontFamily="monospace"
         android:text="TOP SOCCER TEAMS"
         android:textColor="#F44336"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/teamsDisplayId"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"/>
     <TextView
         android:id="@+id/teamsDisplayId"
         android:layout_width="wrap_content"

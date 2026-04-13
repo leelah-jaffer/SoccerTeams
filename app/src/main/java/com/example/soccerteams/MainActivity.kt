@@ -2,6 +2,7 @@ package com.example.soccerteams
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -10,11 +11,19 @@ import androidx.core.view.WindowInsetsCompat
 import java.util.Arrays
 import kotlin.toString
 
+//loggint the conent of the array
+fun logArrayValues (arr: Array<String>) {
+    Log.v("Array Values:", Arrays.toString(arr))
+}
+
 class MainActivity : AppCompatActivity() {
 
     // Created Array for soccer teams
     val teams = arrayOf<String>("Mamelodi Sundowns FC", "Bidvest Wits", "Orlando Pirates",
         "Kaizer Chiefs", "Cape Town City FC")
+    var teamDisplay = ""
+    var count = 0
+
 
 
     @SuppressLint("MissingInflatedId")
@@ -29,7 +38,20 @@ class MainActivity : AppCompatActivity() {
         //Re-assigned position 0
         teams[0] = "Mamelodi Sundowns FC :)"
 
-        //Putting Array in string   
+        for (team in teams) {
+            teamDisplay += "${team}\n"
+        }
+
+
+
+    //    var teamDisplay = ""
+     //   teamDisplay += "${teams[0]}\n"
+        //teamDisplay += "${teams[1]}\n"
+        //teamDisplay += "${teams[2]}\n"
+        //teamDisplay += "${teams[3]}\n"
+        //teamDisplay += "${teams[4]}\n"
+
+        //Putting Array in textView
         teamsTxt.text = Arrays.toString(teams)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
