@@ -6,24 +6,35 @@ import android.util.Log
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import java.util.Arrays
-import kotlin.toString
+import android.util.Log.v
 
-//loggint the conent of the array
-fun logArrayValues (arr: Array<String>) {
+//logging the content of the array
+fun logArrayValues (arr: Array<String>, i: Int) {
     Log.v("Array Values:", Arrays.toString(arr))
+}
+
+fun getShortestString(arr: Array<String>) : String {
+    var shortestLength = 0
+    var shortestElement = ""
+    for(element in arr) {
+        if (element.count () > shortestLength) {
+            shortestLength = element.count ()
+            shortestElement = element
+
+        }
+    }
+    return shortestElement
 }
 
 class MainActivity : AppCompatActivity() {
 
     // Created Array for soccer teams
-    val teams = arrayOf<String>("Mamelodi Sundowns FC", "Bidvest Wits", "Orlando Pirates",
-        "Kaizer Chiefs", "Cape Town City FC")
-    var teamDisplay = ""
-    var count = 0
-
+    val teams = arrayOf<String>(
+        "Mamelodi Sundowns FC", "Bidvest Wits", "Orlando Pirates",
+        "Kaizer Chiefs", "Cape Town City FC"
+    )
 
 
     @SuppressLint("MissingInflatedId")
@@ -35,29 +46,37 @@ class MainActivity : AppCompatActivity() {
         //Creating variable to hold the textview
         val teamsTxt = findViewById<TextView>(R.id.teamsDisplayId)
 
-        //Re-assigned position 0
-        teams[0] = "Mamelodi Sundowns FC :)"
-
+        // add all the teams to the display string
+        var teamsDisplay = ""
         for (team in teams) {
-            teamDisplay += "${team}\n"
+            teamsDisplay += "${team}\n"
         }
+        //set the text views text to the teams display string
+        teamsTxt.text = teamsDisplay
 
+        // call the log for the array values and teams being in () is called the argument of the array, the argument of the array has to be concatinated.
+        logArrayValues(teams, 4)
+        logArrayValues(teams, 4)
+
+
+        // call the getShortestString function
+        var shortestName = getShortestString(teams)
+        Log.v("Shortest name", shortestName)
+
+    }
 
 
     //    var teamDisplay = ""
-     //   teamDisplay += "${teams[0]}\n"
-        //teamDisplay += "${teams[1]}\n"
-        //teamDisplay += "${teams[2]}\n"
-        //teamDisplay += "${teams[3]}\n"
-        //teamDisplay += "${teams[4]}\n"
+    //   teamDisplay += "${teams[0]}\n"
+    //teamDisplay += "${teams[1]}\n"
+    //teamDisplay += "${teams[2]}\n"
+    //teamDisplay += "${teams[3]}\n"
+    //teamDisplay += "${teams[4]}\n"
 
-        //Putting Array in textView
-        teamsTxt.text = Arrays.toString(teams)
+    //teamsTxt.text = teamDisplay
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+    ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+        v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+        insets
     }
-}
